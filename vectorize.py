@@ -40,13 +40,15 @@ def gather_ims(Dir, subdir_lst, amount):
 		ims.append(im)
 	return ims
 
-def create_data_to_feed(Train_Num, Val_Num, batch_size):
+def create_data_to_feed(Train_Num, Val_Num, batch_size, dogs, flowers):
 	amount = int((Train_Num + Val_Num) / 2)
 	t = int(Train_Num / 2)
 	v = int(Val_Num / 2)
-	dog_array = gather_ims(Dog_Dir, dogs, amount)
+	dog_ls = [i for i in os.listdir(dogs) if os.path.isdir(os.path.join(dogs, i))]
+	flower_ls = [i for i in os.listdir(flowers) if os.path.isdir(os.path.join(flowers, i))]
+	dog_array = gather_ims(dogs, dog_ls, amount)
 
-	flower_array = gather_ims(Flower_Dir, flowers, amount)
+	flower_array = gather_ims(flowers, flower_ls, amount)
 
 	all_array = dog_array + flower_array
 	padded = pad_ds(all_array)

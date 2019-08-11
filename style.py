@@ -38,7 +38,7 @@ train_num = 50
 val_num = 20
 batch_size = 8
 
-train, val = vectorize.create_data_to_feed(train_num, val_num, batch_size)
+train, val = vectorize.create_data_to_feed(train_num, val_num, batch_size, Dog_Dir, Flower_Dir)
 
 x = train[0]
 s = x[0].shape
