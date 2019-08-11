@@ -55,7 +55,7 @@ def create_data_to_feed(Train_Num, Val_Num, batch_size, dogs, flowers):
 	all_array = dog_array + flower_array
 	padded = pad_ds(all_array)
 	print(padded.shape)
-	padded = skimage.measure.block_reduce(padded, (1, 4, 4, 1), func = np.mean)
+	padded = skimage.measure.block_reduce(padded, (1, 2, 2, 1), func = np.mean)
 	print(padded.shape)
 
 	all_dogs = padded[:amount]

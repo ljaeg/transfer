@@ -34,7 +34,7 @@ Flower_Dir = '/home/admin/Desktop/NST/flowers'
 # flowers = [i for i in os.listdir(Flower_Dir) if os.path.isdir(os.path.join(Flower_Dir, i))]
 # dogs = [i for i in os.listdir(Dog_Dir) if os.path.isdir(os.path.join(Dog_Dir, i))]
 
-train_num = 300
+train_num = 450
 val_num = 100
 batch_size = 8
 
@@ -43,7 +43,7 @@ train, val = vectorize.create_data_to_feed(train_num, val_num, batch_size, Dog_D
 x = train[0]
 s = x[0].shape
 
-ConvScale = 16
+ConvScale = 32
 DenseScale = 16
 dropout_rate = .4
 
@@ -69,6 +69,9 @@ model.add(Dropout(dropout_rate))
 model.add(Dense(int(2*DenseScale), activation = 'relu'))
 model.add(Dropout(dropout_rate))
 
+model.add(Dense(int(2*DenseScale), activation = 'relu'))
+model.add(Dropout(dropout_rate))
+
 model.add(Dense(int(DenseScale), activation = 'relu'))
 model.add(Dropout(dropout_rate))
 
@@ -79,7 +82,7 @@ model.summary()
 
 model.fit_generator(
 	generator = train,
-	epochs = 10,
+	epochs = 30,
 	verbose = 2,
 	validation_data = val,
 	steps_per_epoch = np.ceil(train_num / batch_size),
