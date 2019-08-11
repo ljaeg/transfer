@@ -34,8 +34,8 @@ Flower_Dir = '/home/admin/Desktop/NST/flowers'
 # flowers = [i for i in os.listdir(Flower_Dir) if os.path.isdir(os.path.join(Flower_Dir, i))]
 # dogs = [i for i in os.listdir(Dog_Dir) if os.path.isdir(os.path.join(Dog_Dir, i))]
 
-train_num = 50
-val_num = 20
+train_num = 300
+val_num = 100
 batch_size = 8
 
 train, val = vectorize.create_data_to_feed(train_num, val_num, batch_size, Dog_Dir, Flower_Dir)
@@ -74,7 +74,7 @@ model.add(Dropout(dropout_rate))
 
 model.add(Dense(1, activation = 'sigmoid'))
 
-model.compile(optimizer = Adam(lr = .0002), loss = 'binary_crossentropy')
+model.compile(optimizer = Adam(lr = .0002), loss = 'binary_crossentropy', metrics = ['acc'])
 model.summary()
 
 model.fit_generator(
