@@ -23,11 +23,11 @@ from keras.preprocessing.image import ImageDataGenerator
 K.set_floatx('float32')
 # K.set_session(session)
 
-Dog_Dir = '/users/loganjaeger/Desktop/self_python_files/style_transfer/dogs/images'
-Flower_Dir = '/users/loganjaeger/Desktop/self_python_files/style_transfer/flowers'
+# Dog_Dir = '/users/loganjaeger/Desktop/self_python_files/style_transfer/dogs/images'
+# Flower_Dir = '/users/loganjaeger/Desktop/self_python_files/style_transfer/flowers'
 
-flowers = [i for i in os.listdir(Flower_Dir) if os.path.isdir(os.path.join(Flower_Dir, i))]
-dogs = [i for i in os.listdir(Dog_Dir) if os.path.isdir(os.path.join(Dog_Dir, i))]
+# flowers = [i for i in os.listdir(Flower_Dir) if os.path.isdir(os.path.join(Flower_Dir, i))]
+# dogs = [i for i in os.listdir(Dog_Dir) if os.path.isdir(os.path.join(Dog_Dir, i))]
 
 def gather_ims(Dir, subdir_lst, amount):
 	ims = []
@@ -102,5 +102,5 @@ def pad_ds(data):
 	return np.array(x)
 
 
-create_data_to_feed(10, 10, 4)
+
 
