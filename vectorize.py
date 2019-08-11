@@ -34,6 +34,7 @@ def gather_ims(Dir, subdir_lst, amount):
 	for _ in range(int(amount)):
 		subdir = np.random.choice(subdir_lst)
 		lst_of_ims = os.listdir(os.path.join(Dir, subdir))
+		print(subdir)
 		choice = np.random.choice(lst_of_ims)
 		dir_of_choice = os.path.join(Dir, subdir, choice)
 		im = r = mpimg.imread(dir_of_choice)
@@ -46,8 +47,8 @@ def create_data_to_feed(Train_Num, Val_Num, batch_size, dogs, flowers):
 	v = int(Val_Num / 2)
 	dog_ls = [i for i in os.listdir(dogs) if os.path.isdir(os.path.join(dogs, i))]
 	flower_ls = [i for i in os.listdir(flowers) if os.path.isdir(os.path.join(flowers, i))]
-	dog_array = gather_ims(dogs, dog_ls, amount)
 
+	dog_array = gather_ims(dogs, dog_ls, amount)
 	flower_array = gather_ims(flowers, flower_ls, amount)
 
 	all_array = dog_array + flower_array
