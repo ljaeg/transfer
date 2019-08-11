@@ -35,7 +35,7 @@ def gather_ims(Dir, subdir_lst, amount):
 	for _ in range(int(amount)):
 		subdir = np.random.choice(subdir_lst)
 		lst_of_ims = os.listdir(os.path.join(Dir, subdir))
-		print(subdir)
+		#print(subdir)
 		choice = np.random.choice(lst_of_ims)
 		dir_of_choice = os.path.join(Dir, subdir, choice)
 		im = r = mpimg.imread(dir_of_choice)
@@ -55,7 +55,7 @@ def create_data_to_feed(Train_Num, Val_Num, batch_size, dogs, flowers):
 	all_array = dog_array + flower_array
 	padded = pad_ds(all_array)
 	print(padded.shape)
-	padded = skimage.measure.block_reduce(padded, (4, 4, 1), func = np.mean)
+	padded = skimage.measure.block_reduce(padded, (1, 4, 4, 1), func = np.mean)
 	print(padded.shape)
 
 	all_dogs = padded[:amount]
