@@ -11,6 +11,7 @@ from keras.layers import Conv2D, Dropout
 from keras.optimizers import Nadam, Adam  
 
 from keras.preprocessing.image import ImageDataGenerator
+import skimage
 
 # config = tf.ConfigProto()
 # config.gpu_options.allow_growth = True
@@ -53,6 +54,9 @@ def create_data_to_feed(Train_Num, Val_Num, batch_size, dogs, flowers):
 
 	all_array = dog_array + flower_array
 	padded = pad_ds(all_array)
+	print(padded.shape)
+	padded = skimage.measure.block_reduce(padded, (4, 4), np.mean)
+	print(padded.shape)
 
 	all_dogs = padded[:amount]
 	all_flowers = padded[amount:]
