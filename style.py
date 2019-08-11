@@ -43,7 +43,7 @@ train, val = vectorize.create_data_to_feed(train_num, val_num, batch_size, Dog_D
 x = train[0]
 s = x[0].shape
 
-ConvScale = 32
+ConvScale = 16
 DenseScale = 16
 dropout_rate = .4
 
