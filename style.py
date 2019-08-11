@@ -13,7 +13,7 @@ from keras.optimizers import Nadam, Adam
 from img_preprocess import create_noise, standardize_img
 
 import vectorize
-
+#hello
 
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
