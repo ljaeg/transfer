@@ -10,7 +10,7 @@ from keras.models import Sequential
 from keras.layers import Conv2D, Dropout, MaxPool2D, GlobalMaxPooling2D, Dense
 from keras.optimizers import Nadam, Adam  
 
-from img_preprocess import create_noise, standardize_img
+#from img_preprocess import create_noise, standardize_img
 
 import vectorize
 #hello
