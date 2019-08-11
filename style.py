@@ -26,8 +26,10 @@ import keras.backend as K
 K.set_floatx('float32')
 # K.set_session(session)
 
-Dog_Dir = '/users/loganjaeger/Desktop/self_python_files/style_transfer/dogs/images'
-Flower_Dir = '/users/loganjaeger/Desktop/self_python_files/style_transfer/flowers'
+# Dog_Dir = '/users/loganjaeger/Desktop/self_python_files/style_transfer/dogs/images'
+# Flower_Dir = '/users/loganjaeger/Desktop/self_python_files/style_transfer/flowers'
+Dog_Dir = '/home/admin/Desktop/NST/dogs'
+Flower_Dir = '/home/admin/Desktop/NST/flowers'
 
 flowers = [i for i in os.listdir(Flower_Dir) if os.path.isdir(os.path.join(Flower_Dir, i))]
 dogs = [i for i in os.listdir(Dog_Dir) if os.path.isdir(os.path.join(Dog_Dir, i))]
