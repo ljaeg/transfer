@@ -58,8 +58,8 @@ def make_discriminator():
 
 def make_generator(latent_dim = 100):
 	model = Sequential()
-	model.add(Dense(30 * 25 * 25 * 3, activation = "relu", input_shape = (latent_dim,)))
-	model.add(Reshape((25, 25, 3, 30)))
+	model.add(Dense(30 * 25 * 25, activation = "relu", input_shape = (latent_dim,)))
+	model.add(Reshape((25, 25, 30)))
 	model.add(UpSampling2D(size = (3, 3)))
 	model.add(Conv2D(4*conv_scale, kernel_size = kernel_size, padding = "same"))
 	model.add(BatchNormalization(momentum = .95))
