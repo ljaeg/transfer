@@ -6,14 +6,14 @@ from skimage.measure import block_reduce
 import h5py
 import matplotlib.pyplot as plt 
 
-Save_dir = "/Users/loganjaeger/Desktop/"
-Dir = "/Users/loganjaeger/Downloads"
+#Save_dir = "/Users/loganjaeger/Desktop/" 
+Save_dir = "/home/admin/Desktop/"
+#Dir = "/Users/loganjaeger/Downloads"
+Dir = "/home/admin/Desktop/for_transfer_ims" 
 path_to_csv = os.path.join(Dir, "train_info.csv")
 path_to_ims = os.path.join(Dir, "train_1")
 
 style = "Post-Impressionism"
-
-im_names = [f for f in os.listdir(path_to_ims)]
 
 DF = pd.read_csv(path_to_csv)
 
@@ -47,13 +47,13 @@ def retrieve_files():
 				all_ims.append(im)
 	print("number of ims: ", len(all_ims))
 	all_ims = np.array(all_ims)
-	f = h5py.File(os.path.join(Save_dir, "self_python_files", "transfer", "{}.hdf5".format(style)), "w")
+	f = h5py.File(os.path.join(Save_dir, "for_transfer_ims", "{}.hdf5".format(style)), "w")
 	f.create_dataset("images", data = all_ims)
 	f.close()
 
-#retrieve_files()
+retrieve_files()
 
-f = h5py.File(os.path.join(Save_dir, "self_python_files", "transfer", "{}.hdf5".format(style)), "r")
-ims = np.array(f["images"]).astype("uint8")
-plt.imshow(ims[80])
-plt.show()
+# f = h5py.File(os.path.join(Save_dir, "self_python_files", "transfer", "{}.hdf5".format(style)), "r")
+# ims = np.array(f["images"]).astype("uint8")
+# plt.imshow(ims[80])
+# plt.show()
