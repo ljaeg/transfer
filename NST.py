@@ -1,5 +1,7 @@
 import numpy as np 
 #from PIL import Image
+import matplotlib.pyplot as plt
+import os
 import tensorflow as tf
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
@@ -12,8 +14,7 @@ from keras import backend
 from keras.constraints import MinMaxNorm
 from keras.optimizers import RMSprop, Adam
 from keras.losses import binary_crossentropy
-import matplotlib.pyplot as plt
-import os
+
 
 conv_scale = 32
 kernel_size = (3, 3)
