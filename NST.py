@@ -21,7 +21,7 @@ from keras.optimizers import RMSprop, Adam
 from keras.losses import binary_crossentropy
 
 
-conv_scale = 32
+conv_scale = 16
 kernel_size = (3, 3)
 dense_scale = 8
 Save_dir = "/home/admin/Desktop/transfer/art.h5"
@@ -165,7 +165,7 @@ def do():
 	gen = make_generator()
 	disc = make_discriminator()
 	comb = make_combined(gen, disc)
-	train(gen, disc, comb, epochs = 5000, batch_size = 32, save_interval = 500)
+	train(gen, disc, comb, epochs = 5000, batch_size = 8, save_interval = 500)
 
 do()
 
