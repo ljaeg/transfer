@@ -8,6 +8,7 @@ import tensorflow as tf
 # config.gpu_options.allow_growth = True
 # session = tf.Session(config=config)
 physical_devices = tf.config.list_physical_devices('GPU') 
+print(physical_devices)
 tf.config.experimental.set_memory_growth(physical_devices, True) 
 from keras.models import Sequential
 from keras.datasets import mnist
