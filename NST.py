@@ -75,7 +75,7 @@ def make_generator(latent_dim = 100):
 	model.add(Conv2D(4*conv_scale, kernel_size = kernel_size, padding = "same"))
 	model.add(BatchNormalization(momentum = .95))
 	model.add(Activation("relu"))
-	model.add(Conv2D(1, kernel_size = (7, 7), padding = "same", activation = "tanh"))
+	model.add(Conv2D(3, kernel_size = (7, 7), padding = "same", activation = "tanh"))
 	return model
 
 def make_combined(generator, discriminator):
