@@ -45,7 +45,7 @@ def make_discriminator():
 	model.add(LeakyReLU(alpha = .2))
 	model.add(Conv2D(conv_scale, kernel_size, padding = "same", kernel_constraint = mmn))
 	model.add(LeakyReLU(alpha = .2))
-	model.add(Conv2D(2*conv_scale, kernel_size, padding = "same", kernel_constraint = mmn))
+	model.add(Conv2D(conv_scale, kernel_size, padding = "same", kernel_constraint = mmn))
 	model.add(BatchNormalization(momentum = .95))
 	model.add(LeakyReLU(alpha = .2))
 	# model.add(Conv2D(2*conv_scale, kernel_size, padding = "same"))
@@ -115,7 +115,7 @@ def save_best_images(epoch, generator, critic, latent_dim):
 		im = gen_ims[ind, :, :, 0]
 		im = ((.5 * im) + .5)
 		plt.subplot(3, 3, i)
-		plt.imshow(im, cmap = "gray")
+		plt.imshow(im)
 		plt.axis("off")
 	plt.savefig(os.path.join(img_save_dir, "epoch_{}.png".format(epoch_number)))
 	plt.close()
