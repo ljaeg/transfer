@@ -21,7 +21,7 @@ from keras.optimizers import RMSprop, Adam
 from keras.losses import binary_crossentropy
 
 
-conv_scale = 16 * 2
+conv_scale = 8
 kernel_size = (3, 3)
 dense_scale = 8
 Save_dir = "/home/admin/Desktop/transfer/art.h5"
