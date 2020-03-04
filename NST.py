@@ -21,7 +21,7 @@ from keras.optimizers import RMSprop, Adam
 from keras.losses import binary_crossentropy
 
 
-conv_scale = 8
+conv_scale = 4
 kernel_size = (3, 3)
 dense_scale = 8
 Save_dir = "/home/admin/Desktop/transfer/art.h5"
@@ -98,7 +98,7 @@ def save_ims(epoch, generator, latent_dim):
 	for i, im in enumerate(gen_ims, 1):
 		im = ((.5 * im) + .5).reshape((300, 300))
 		plt.subplot(3, 3, i)
-		plt.imshow(im, cmap = "gray")
+		plt.imshow(im)
 		plt.axis("off")
 	plt.savefig(os.path.join(img_save_dir, "epoch_{}.png".format(epoch_number)))
 	plt.close()
@@ -165,7 +165,7 @@ def do():
 	gen = make_generator()
 	disc = make_discriminator()
 	comb = make_combined(gen, disc)
-	train(gen, disc, comb, epochs = 5000, batch_size = 8, save_interval = 500)
+	train(gen, disc, comb, epochs = 5000, batch_size = 8, save_interval = 250)
 
 do()
 
