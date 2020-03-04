@@ -3,10 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import tensorflow as tf
-config = tf.config.experimental
-#config = tf.ConfigProto()
-config.gpu_options.allow_growth = True
-session = tf.Session(config=config)
+# config = tf.config.experimental
+# #config = tf.ConfigProto()
+# config.gpu_options.allow_growth = True
+# session = tf.Session(config=config)
+physical_devices = tf.config.list_physical_devices('GPU') 
+tf.config.experimental.set_memory_growth(physical_devices[0], True) 
 from keras.models import Sequential
 from keras.datasets import mnist
 from keras.layers import Dense, Conv2D, Conv2DTranspose, Dropout, MaxPooling2D, GlobalMaxPooling2D, Reshape, UpSampling2D, Flatten, BatchNormalization, Activation
