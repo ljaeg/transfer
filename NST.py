@@ -31,7 +31,7 @@ real_img_dir = "/home/admin/Desktop/for_transfer_ims/Post-Impressionism.hdf5"
 def load_real_samples():
 	x = h5py.File(real_img_dir, "r")["images"]
 	X = np.array(x).astype("float32")
-	X = np.expand_dims(X, axis = 3)
+	#X = np.expand_dims(X, axis = 3)
 	y = np.ones(len(x))
 	return (X - 127.5) / 127.5, y
 
