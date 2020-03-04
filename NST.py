@@ -26,7 +26,7 @@ kernel_size = (3, 3)
 dense_scale = 8
 Save_dir = "/home/admin/Desktop/transfer/art.h5"
 img_save_dir = "/home/admin/Desktop/transfer/new_ims"
-real_img_dir = "/home/admin/Desktop/Post-Impressionism.hdf5"
+real_img_dir = "/home/admin/Desktop/for_transfer_ims/Post-Impressionism.hdf5"
 
 def load_real_samples():
 	x = h5py.File(real_img_dir, "r")["images"]
