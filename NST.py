@@ -43,7 +43,7 @@ def make_discriminator():
 	model = Sequential()
 	model.add(Conv2D(conv_scale, kernel_size, padding = "same", kernel_constraint = mmn))
 	model.add(LeakyReLU(alpha = .2))
-	model.add(Conv2D(2*conv_scale, kernel_size, padding = "same", kernel_constraint = mmn))
+	model.add(Conv2D(conv_scale, kernel_size, padding = "same", kernel_constraint = mmn))
 	model.add(LeakyReLU(alpha = .2))
 	model.add(Conv2D(2*conv_scale, kernel_size, padding = "same", kernel_constraint = mmn))
 	model.add(BatchNormalization(momentum = .95))
@@ -53,13 +53,13 @@ def make_discriminator():
 	# model.add(LeakyReLU(alpha = .2))
 	model.add(Flatten())
 	model.add(Dense(1, activation = "linear"))
-	model.compile(optimizer = RMSprop(lr = .00005), loss = binary_crossentropy, metrics = ["accuracy"])
+	model.compile(optimizer = RMSprop(lr = .00005), loss = wasserstein_loss, metrics = ["accuracy"])
 	return model
 
 def make_generator(latent_dim = 100):
 	model = Sequential()
-	model.add(Dense(30 * 25 * 25, activation = "relu", input_shape = (latent_dim,)))
-	model.add(Reshape((25, 25, 30)))
+	model.add(Dense(30 * 25 * 25 * 3, activation = "relu", input_shape = (latent_dim,)))
+	model.add(Reshape((25, 25, 3, 30)))
 	model.add(UpSampling2D(size = (3, 3)))
 	model.add(Conv2D(4*conv_scale, kernel_size = kernel_size, padding = "same"))
 	model.add(BatchNormalization(momentum = .95))
