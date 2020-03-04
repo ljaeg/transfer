@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import tensorflow as tf
-config = tf.config.experimental()
+config = tf.config.experimental
 #config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
 session = tf.Session(config=config)
