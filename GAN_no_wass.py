@@ -45,7 +45,7 @@ def make_discriminator():
 	model.add(LeakyReLU(alpha = .2))
 	model.add(Conv2D(conv_scale, kernel_size, padding = "same"))
 	model.add(LeakyReLU(alpha = .2))
-	model.add(Conv2D(conv_scale, kernel_size, padding = "same"))
+	model.add(Conv2D(2 * conv_scale, kernel_size, padding = "same"))
 	model.add(BatchNormalization(momentum = .9))
 	model.add(LeakyReLU(alpha = .2))
 	# model.add(Conv2D(2*conv_scale, kernel_size, padding = "same"))
@@ -99,7 +99,7 @@ def save_ims(epoch, generator, latent_dim):
 	noise = np.random.randn(9 * latent_dim).reshape(9, latent_dim)
 	gen_ims = generator.predict(noise)
 	for i, im in enumerate(gen_ims, 1):
-		im = ((.5 * im) + .5).reshape((300, 300))
+		im = ((.5 * im) + .5).reshape((300, 300, 3))
 		plt.subplot(3, 3, i)
 		plt.imshow(im)
 		plt.axis("off")
