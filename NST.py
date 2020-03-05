@@ -61,7 +61,7 @@ def make_generator(latent_dim = 100):
 	model.add(Dense(30 * 25 * 25, activation = "relu", input_shape = (latent_dim,)))
 	model.add(Reshape((25, 25, 30)))
 	model.add(UpSampling2D(size = (3, 3)))
-	model.add(Conv2D(8*conv_scale, kernel_size = kernel_size, padding = "same"))
+	model.add(Conv2D(16*conv_scale, kernel_size = kernel_size, padding = "same"))
 	model.add(BatchNormalization(momentum = .95))
 	model.add(Activation("relu"))
 	model.add(UpSampling2D(size = (2, 2)))
@@ -142,7 +142,7 @@ def train(generator, discriminator, combined, latent_dim = 100, epochs = 150, ba
 		d_total_loss = .5 * np.add(d_loss_fake, d_loss_real)
 
 		#train generator
-		if not (epoch + 1) % 3:
+		if not (epoch + 1) % 2:
 			g_loss = combined.train_on_batch(noise, gen_y)
 			#show progress
 			print("epoch {}/{}".format(epoch + 1, epochs))
