@@ -133,6 +133,7 @@ def train(generator, discriminator, combined, latent_dim = 100, epochs = 150, ba
 		#Get batch size amount of real images
 		idx = np.random.randint(0, real.shape[0], batch_size)
 		real_imgs = real[idx]
+		real_imgs = real_imgs + np.random.normal(loc = 0, scale = .3, size = real_imgs.shape)
 		real_y = np.ones(batch_size)
 
 		#get batch size amount of generated images
@@ -145,7 +146,7 @@ def train(generator, discriminator, combined, latent_dim = 100, epochs = 150, ba
 		d_total_loss = .5 * np.add(d_loss_fake, d_loss_real)
 
 		#train generator
-		if not (epoch + 1) % 4:
+		if not (epoch + 1) % 2:
 			g_loss = combined.train_on_batch(noise, gen_y)
 			#show progress
 			print("epoch {}/{}".format(epoch + 1, epochs))
