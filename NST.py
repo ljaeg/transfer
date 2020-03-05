@@ -70,10 +70,10 @@ def make_generator(latent_dim = 100):
 	model.add(Activation("relu"))
 	model.add(UpSampling2D(size = (2, 2)))
 	model.add(Conv2D(4*conv_scale, kernel_size = kernel_size, padding = "same"))
-	model.add(BatchNormalization(momentum = .95))
+	model.add(BatchNormalization(momentum = .99))
 	model.add(Activation("relu"))
 	model.add(Conv2D(4*conv_scale, kernel_size = kernel_size, padding = "same"))
-	model.add(BatchNormalization(momentum = .95))
+	model.add(BatchNormalization(momentum = .99))
 	model.add(Activation("relu"))
 	model.add(Conv2D(3, kernel_size = (7, 7), padding = "same", activation = "tanh"))
 	return model
@@ -142,7 +142,7 @@ def train(generator, discriminator, combined, latent_dim = 100, epochs = 150, ba
 		d_total_loss = .5 * np.add(d_loss_fake, d_loss_real)
 
 		#train generator
-		if not (epoch + 1) % 5:
+		if not (epoch + 1) % 3:
 			g_loss = combined.train_on_batch(noise, gen_y)
 			#show progress
 			print("epoch {}/{}".format(epoch + 1, epochs))
