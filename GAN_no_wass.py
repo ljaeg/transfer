@@ -51,9 +51,9 @@ def make_discriminator():
 	# model.add(Conv2D(2*conv_scale, kernel_size, padding = "same"))
 	# model.add(BatchNormalization(momentum = .9))
 	# model.add(LeakyReLU(alpha = .2))
-	# model.add(Flatten())
-	model.add(Dense(1, activation = "linear"))
-	model.compile(optimizer = RMSprop(lr = .00005), loss = "binary_crossentropy", metrics = ["accuracy"])
+	model.add(Flatten())
+	model.add(Dense(1, activation = "sigmoid"))
+	model.compile(optimizer = Adam(.0002, .05), loss = binary_crossentropy, metrics = ["accuracy"])
 	return model
 
 def make_generator(latent_dim = 100):
@@ -86,12 +86,12 @@ def make_combined(generator, discriminator):
 	model = Sequential()
 	model.add(generator)
 	model.add(discriminator)
-	model.compile(optimizer = RMSprop(lr = .00005), loss = "binary_crossentropy")
+	model.compile(optimizer = Adam(.0002, .05), loss = binary_crossentropy)
 	return model
 
 def generate_fake_samples(generator, latent_dim, n_samples, noise):
 	X = generator.predict(noise)
-	y = np.zeros(n_samples) - 1
+	y = np.zeros(n_samples)
 	return X, y
 
 def save_ims(epoch, generator, latent_dim):
