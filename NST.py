@@ -48,9 +48,9 @@ def make_discriminator():
 	model.add(Conv2D(conv_scale, kernel_size, padding = "same", kernel_constraint = mmn))
 	model.add(BatchNormalization(momentum = .9))
 	model.add(LeakyReLU(alpha = .2))
-	# model.add(Conv2D(2*conv_scale, kernel_size, padding = "same"))
-	# model.add(BatchNormalization(momentum = .8))
-	# model.add(LeakyReLU(alpha = .2))
+	model.add(Conv2D(2*conv_scale, kernel_size, padding = "same"))
+	model.add(BatchNormalization(momentum = .9))
+	model.add(LeakyReLU(alpha = .2))
 	model.add(Flatten())
 	model.add(Dense(1, activation = "linear"))
 	model.compile(optimizer = RMSprop(lr = .00005), loss = wasserstein_loss, metrics = ["accuracy"])
@@ -78,7 +78,7 @@ def make_generator(latent_dim = 100):
 	model.add(Conv2D(8*conv_scale, kernel_size = kernel_size, padding = "same"))
 	model.add(BatchNormalization(momentum = .8))
 	model.add(Activation("relu"))
-	model.add(Conv2D(3, kernel_size = (7, 7), padding = "same", activation = "tanh"))
+	model.add(Conv2D(3, kernel_size = (9, 9), padding = "same", activation = "tanh"))
 	return model
 
 def make_combined(generator, discriminator):
